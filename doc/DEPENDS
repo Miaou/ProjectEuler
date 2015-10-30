@@ -1,0 +1,18 @@
+Dépendances des différents outils :
+
+
+gcc: ...
+
+LaTeX:
+
+Python3: (>= 3.0.0)
+  apt-get install python3
+
+LUA: (>= 5.3.0)
+  # Build from source
+  apt-get install libreadline-dev
+  wget ttp://www.lua.org/ftp/lua-5.3.1.tar.gz
+  tar xzf lua-5.3.1.tar.gz
+  cd lua-5.3.1
+  make linux test
+  make install
