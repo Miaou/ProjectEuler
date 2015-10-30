@@ -13,7 +13,13 @@ Tests sur les temps d'exécution, pour obtenir le 100 001° nb premier:
    (avec -O2)
 - fonction naive en LUA                             3.01
    (test tous les diviseurs entre 2 et sqrt(i))
-- fonction naive optimisée en LUA                   2.97
+- fonction naive optimisée en LUA                   2.96
+   (iterateurs squizés par des i = i+1)
+- fonction optimisée en LUA                         ECHEC
+   (pour ne pas tester que les diviseurs premiers)
+- fonction naive en LuaJIT                          0.433
+   (test tous les diviseurs entre 2 et sqrt(i))
+- fonction naive optimisée en LuaJIT                0.438
    (iterateurs squizés par des i = i+1)
 - fonction optimisée en LUA                         ECHEC
    (pour ne pas tester que les diviseurs premiers)
@@ -25,3 +31,5 @@ Python Naif -> C Optim :    x120
 Python Naif -> C Crible :   x600
 Python -> LUA :             x2.5
 LUA -> C :                  x11
+Python -> LuaJIT :          x18
+LuaJIT -> C :               x1.5

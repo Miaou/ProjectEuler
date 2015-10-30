@@ -9,6 +9,8 @@ all: build
 	bash -c "time out/pab_crible 100001"
 	bash -c "time lua pab_naif.lua 100001"
 	bash -c "time lua pab_opt.lua 100001"
+	bash -c "time luajit pab_naif.lua 100001"
+	bash -c "time luajit pab_opt.lua 100001"
 build:
 	mkdir -p out/
 	gcc -O2 -o out/pab_naif pab_naif.c -lm

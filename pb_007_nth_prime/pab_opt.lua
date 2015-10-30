@@ -15,9 +15,9 @@ function get_nth_prime(iPrime)
         bNotPrime = false
         root = math.floor(math.sqrt(i))
         j = 2
-        for j=2,root do -- Reste plus optimisé que de faire la boucle while
+        --for j=2,root do -- Reste plus optimisé que de faire la boucle while
         --for j=1,#lPrimes do -- C'est une perte de temps de parcourir des éléments dans une liste...
-        --for k,j in ipairs(lPrimes) do
+        for k,j in ipairs(lPrimes) do
             if ((i%j) == 0) then
                 bNotPrime = true
                 break

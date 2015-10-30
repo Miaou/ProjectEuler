@@ -16,3 +16,11 @@ LUA: (>= 5.3.0)
   cd lua-5.3.1
   make linux test
   make install
+
+LuaJIT: (>= 2.0.4)
+  # JIT for LUA (the language is different from lua-5.3 .........)
+  # Build from source
+  wget http://luajit.org/download/LuaJIT-2.0.4.tar.gz
+  tar
+  cd
+  make install
