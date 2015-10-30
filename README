@@ -1,0 +1,20 @@
+Salut ! C'est le Project Euler... (https://projecteuler.net/)
+
+Notre but est de traiter certains des problèmes, et de les implémenter dans différents langages de progra, afin de tous progresser gaiement.
+
+PAB, EBI, JAL
+
+TODO:
+ - uniformiser les résultats (table de temps, table 2 entrées comparatives ? génération de latex automatique ?)
+ - voir si c'est intéressant de garder un README par project
+ - voir ce qu'on veut mettre dans le makefile (séparer les makefiles pour en faire un par problème ?)
+ - voir ce qu'on peut faire pour que stdout puisse être parsé tout seul... (uniformiser le format de la réponse du code, et le format de time (il faut utiliser une fonction interne sous Python, car time python3 rajoute du temps))
+   -> nom_methode(entree) = sortie
+   -> user 0.129s
+
+
+------------
+- Problems -
+------------
+
+pb7: trouver le i-ème nombre premier. i étant 10 001.

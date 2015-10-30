@@ -1,0 +1,19 @@
+Tests sur les temps d'exécution, pour obtenir le 100 001° nb premier:
+- fonction naive sur Python                         7.62
+   (test tous les diviseurs entre 2 et sqrt(i))
+- fonction optimisée à la main sur Python           ECHEC
+   (pour ne pas tester que les diviseurs premiers)
+- fonction numba-isée (autojit(nopython))           0.985
+   (performances niveau C attendues)
+- fonction naive en C                               0.281
+   (compilée avec -O2)
+- fonction optimisée à la main en C                 0.066
+   (avec -O2)
+- avec le crible en C                               0.012
+   (avec -O2)
+
+Python -> Numba :           x7.7
+Python -> C :               x27
+(Numba -> C) :              x3.5
+Python Naif -> C Optim :    x120
+Python Naif -> C Optim2 :   x600
