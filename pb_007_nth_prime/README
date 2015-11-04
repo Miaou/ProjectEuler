@@ -23,6 +23,8 @@ Tests sur les temps d'exécution, pour obtenir le 100 001° nb premier:
    (iterateurs squizés par des i = i+1)
 - fonction optimisée en LUA                         ECHEC
    (pour ne pas tester que les diviseurs premiers)
+- fonction naive en ASM x64                         0.823
+   (écrite avec mes manoutes)
 
 Python -> Numba :           x7.7
 Python -> C :               x27
@@ -33,3 +35,4 @@ Python -> LUA :             x2.5
 LUA -> C :                  x11
 Python -> LuaJIT :          x18
 LuaJIT -> C :               x1.5
+ASM_main -> C :             x4
