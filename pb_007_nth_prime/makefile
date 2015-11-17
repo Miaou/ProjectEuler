@@ -12,6 +12,7 @@ all: build
 	bash -c "time luajit pab_naif.lua 100001"
 	bash -c "time luajit pab_opt.lua 100001"
 	bash -c "time out/pab_naif_x64 100001"
+	out/pab_multi_hs 100001
 build:
 	mkdir -p out/
 	gcc -O2 -o out/pab_naif pab_naif.c -lm
@@ -19,5 +20,6 @@ build:
 	gcc -O2 -o out/pab_crible pab_crible.c -lm
 	nasm -f elf64 -o out/pab_naif_x64.o pab_naif_x64.asm
 	gcc -o out/pab_naif_x64 out/pab_naif_x64.o
+	ghc -O -o out/pab_multi_hs -odir out -hidir out pab_multi.hs
 clean:
 	rm -r out/

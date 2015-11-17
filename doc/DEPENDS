@@ -24,3 +24,5 @@ LuaJIT: (>= 2.0.4)
   tar
   cd
   make install
+
+Haskell: (v???)

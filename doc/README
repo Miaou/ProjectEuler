@@ -26,11 +26,11 @@ TODO:
      - table comparative
      - utilisation de pb_xxx_/PROBLEM ?
    - voir ce qu'on peut faire pour que stdout puisse être parsé tout seul... 
-     - uniformiser le format de la réponse du code
-     - uniformiser le format de time (il faut utiliser une fonction interne sous Python, car time python3 rajoute du temps)
      - exemple de sortie:
          nom_methode(entree) = sortie
          user 0.129s
+     - décider si le time est fait par bash time, ou par chaque langage de manière spécifique
+       (en se basant sur clock() qui est le temps user)
      - descendre à la ms pour la comparaison entre les méthodes (même si on est conscient que c'est absolument pas reproductible à la ms près)
 
 
