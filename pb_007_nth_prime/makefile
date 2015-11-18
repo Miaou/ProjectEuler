@@ -14,6 +14,12 @@ all: build
 	bash -c "time out/pab_naif_x64 100001"
 	bash -c "time out/mar_naif 100001"
 	out/pab_multi_hs 100001
+	java out.ebi_all Naive     100001
+	java out.ebi_all NaiveOpt  100001
+	java out.ebi_all BiteSet   100001
+	java out.ebi_all BoolList  100001
+	java out.ebi_all BoolArray 100001
+	java out.ebi_all ByteArray 100001
 build:
 	mkdir -p out/
 	gcc -O2 -o out/pab_naif pab_naif.c -lm
@@ -24,5 +30,6 @@ build:
 	ocamlopt -o out/mar_naif mar_naif.ml
 	rm mar_naif.cmi mar_naif.cmx mar_naif.o
 	ghc -O -o out/pab_multi_hs -odir out -hidir out pab_multi.hs
+	javac -d . ebi_all.java
 clean:
 	rm -r out/
