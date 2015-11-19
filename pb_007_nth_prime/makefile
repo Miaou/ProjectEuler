@@ -20,6 +20,6 @@ build:
 	gcc -O2 -o out/pab_crible pab_crible.c -lm
 	nasm -f elf64 -o out/pab_naif_x64.o pab_naif_x64.asm
 	gcc -o out/pab_naif_x64 out/pab_naif_x64.o
-	ghc -O -o out/pab_multi_hs -odir out -hidir out pab_multi.hs
+	ghc -O2 -o out/pab_multi_hs -outputdir out pab_multi.hs
 clean:
 	rm -r out/
