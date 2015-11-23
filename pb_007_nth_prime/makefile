@@ -12,7 +12,7 @@ all: build
 	bash -c "time luajit pab_naif.lua 100001"
 	bash -c "time luajit pab_opt.lua 100001"
 	bash -c "time out/pab_naif_x64 100001"
-	bash -c "time out/mar_crible 100001"
+	bash -c "time out/mar_naif 100001"
 	out/pab_multi_hs 100001
 build:
 	mkdir -p out/
@@ -21,8 +21,8 @@ build:
 	gcc -O2 -o out/pab_crible pab_crible.c -lm
 	nasm -f elf64 -o out/pab_naif_x64.o pab_naif_x64.asm
 	gcc -o out/pab_naif_x64 out/pab_naif_x64.o
-	ocamlopt -o out/mar_crible mar_crible.ml
-	rm mar_crible.cmi mar_crible.cmx mar_crible.o
+	ocamlopt -o out/mar_naif mar_naif.ml
+	rm mar_naif.cmi mar_naif.cmx mar_naif.o
 	ghc -O -o out/pab_multi_hs -odir out -hidir out pab_multi.hs
 clean:
 	rm -r out/
