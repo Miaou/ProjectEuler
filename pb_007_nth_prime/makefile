@@ -12,7 +12,14 @@ all: build
 	bash -c "time luajit pab_naif.lua 100001"
 	bash -c "time luajit pab_opt.lua 100001"
 	bash -c "time out/pab_naif_x64 100001"
+	bash -c "time out/mar_naif 100001"
 	out/pab_multi_hs 100001
+	java out.ebi_all Naive     100001
+	java out.ebi_all NaiveOpt  100001
+	java out.ebi_all BiteSet   100001
+	java out.ebi_all BoolList  100001
+	java out.ebi_all BoolArray 100001
+	java out.ebi_all ByteArray 100001
 build:
 	mkdir -p out/
 	gcc -O2 -o out/pab_naif pab_naif.c -lm
@@ -21,5 +28,8 @@ build:
 	nasm -f elf64 -o out/pab_naif_x64.o pab_naif_x64.asm
 	gcc -o out/pab_naif_x64 out/pab_naif_x64.o
 	ghc -O2 -o out/pab_multi_hs -outputdir out pab_multi.hs
+	ocamlopt -o out/mar_naif mar_naif.ml
+	rm mar_naif.cmi mar_naif.cmx mar_naif.o
+	javac -d . ebi_all.java
 clean:
 	rm -r out/
