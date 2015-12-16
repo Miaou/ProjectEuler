@@ -38,4 +38,5 @@ TODO:
 - Problems -
 ------------
 
-pb7: trouver le i-ème nombre premier. i étant 10 001.
+pb_007: find the i-th prime, where i is 10 001.
+pb_050: find the longest sum of consectuive primes which results to a prime below 1,000,000.
