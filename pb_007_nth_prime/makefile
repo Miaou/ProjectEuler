@@ -4,6 +4,7 @@
 
 all: build
 	python3 pab_naif.py 100001
+	out/pab_naif.cython 100001
 	bash -c "time out/pab_naif 100001"
 	bash -c "time out/pab_opt 100001"
 	bash -c "time out/pab_crible 100001"
@@ -31,5 +32,7 @@ build:
 	ocamlopt -o out/mar_naif mar_naif.ml
 	rm mar_naif.cmi mar_naif.cmx mar_naif.o
 	javac -d . ebi_all.java
+	cython -o out/pab_naif_cython.c --embed pab_naif.pyx
+	gcc -O2 -o out/pab_naif.cython -I /usr/include/python3.4 out/pab_naif_cython.c -lpython3.4m -lm
 clean:
 	rm -r out/

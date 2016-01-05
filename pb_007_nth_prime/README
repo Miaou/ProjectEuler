@@ -25,8 +25,12 @@ Tests sur les temps d'exécution, pour obtenir le 100 001° nb premier:
    (pour ne pas tester que les diviseurs premiers)
 - fonction naive en ASM x64                         0.823
    (écrite avec mes manoutes)
+- fonction naive Python compilé Cython              0.500
+   (typage statique du Python puis compil)
+
 
 Python -> Numba :           x7.7
+Python -> Cython :          x15
 Python -> C :               x27
 (Numba -> C) :              x3.5
 Python Naif -> C Optim :    x120

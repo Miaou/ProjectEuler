@@ -26,3 +26,10 @@ LuaJIT: (>= 2.0.4)
   make install
 
 Haskell: (v???)
+
+Python3-libs:
+  Numba
+  Cython
+
+OCaml:
+  apt-get install ocaml
