@@ -3,9 +3,9 @@
 
 import numba
 from itertools import count
-import gmpy2
 import timeit
 import argparse
+import array
 
 
 
@@ -67,11 +67,30 @@ def fNaiveNumb(iPrime):
         i += 1
 
 
+def fOptArray(iPrime):
+    if iPrime < 1:
+        return iPrime
+    lPrimes = array.array('I')
+    for i in count(2): # Infinite loop
+        root = int(i**.5)+1
+        for j in lPrimes:
+            if i%j == 0:
+                break
+        else:
+            iPrime -= 1
+            lPrimes.append(i)
+            if iPrime == 0:
+                return i
+
+
 if __name__=='__main__':
     parser = argparse.ArgumentParser('Cherchons le nth prime.')
     parser.add_argument('iPrime', metavar='nth_prime', help='indice qui commence à 1', type=int)
     args = parser.parse_args()
-
-    print('user {:.3f}s'.format( timeit.timeit('print("pab_naif_py({{}}) = {{}}".format({0}, fNaive({0})))'.format(args.iPrime), setup='from __main__ import fNaive', number=1) ))
-    print('user {:.3f}s'.format( timeit.timeit('print("pab_naif_numba({{}}) = {{}}".format({0}, fNaiveNumb({0})))'.format(args.iPrime), setup='from __main__ import fNaiveNumb', number=1) ))
+    
+    for sNom, fct in (('pab_naif_py', 'fNaive'),
+                      ('pab_opt_py', 'fOpt'),
+                      ('pab_naifnumba_py', 'fNaiveNumb'),
+                      ('pab_optarray_py', 'fOptArray')):
+        print('user {:.3f}s'.format( timeit.timeit('print("{1}({{}}) = {{}}".format({0}, {2}({0})))'.format(args.iPrime, sNom, fct), setup='from __main__ import {}'.format(fct), number=1) ))
 

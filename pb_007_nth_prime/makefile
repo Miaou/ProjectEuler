@@ -3,7 +3,7 @@
 .PHONY: all build clean
 
 all: build
-	python3 pab_naif.py 100001
+	python3 pab_multi.py 100001
 	out/pab_naif.cython 100001
 	bash -c "time out/pab_naif 100001"
 	bash -c "time out/pab_opt 100001"
