@@ -55,8 +55,12 @@ public abstract class ebi_naive {
 		for (int i = max ; i >= min ; --i) {
 			for (int j = max; j >= i; --j) {
 				final int product = i*j;
-				if (isPalindrome(product))
+				if (product < largestPalindrome)
+					break;
+				if (isPalindrome(product)) {
 					largestPalindrome = Math.max(largestPalindrome, product);
+					break;
+				}
 			}
 		}
 		return largestPalindrome;
