@@ -1,0 +1,23 @@
+Inputs:
+  int [100,999] div0, div1;
+
+Declarations:
+  bool is_pal(int);
+  
+Definitions:
+  res := div0 * div1;
+  is_pal(i) :=
+    i:[100000,999999] &
+    (i % 10) = (i /> 100000) &
+    (i /> 10) % 10 = (i /> 10000) % 10 &
+    (i /> 100) % 10 = (i / 1000) % 10;
+   
+Constraints:
+  is_pal(res);
+
+Proof Obligations:
+  ~(ALL ldiv0:[100,999], ldiv1:[100,999] (is_pal(ldiv0*ldiv1) -> (res >= ldiv0*ldiv1)));
+
+Outputs:
+  res;
+
