@@ -9,7 +9,7 @@ all: build
 	out/ebi_opt $(TARGET)
 build:
 	mkdir -p out/
-	ghc -O -o out/ebi_naif -odir out -hidir out ebi_naif.hs
-	ghc -O -o out/ebi_opt -odir out -hidir out ebi_opt.hs
+	ghc -O -o out/ebi_naif -outputdir out -main-is MainNaif ebi_naif.hs
+	ghc -O -o out/ebi_opt -outputdir out -main-is MainOpt ebi_opt.hs
 clean:
 	rm -r out/
