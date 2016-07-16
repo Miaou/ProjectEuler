@@ -9,16 +9,16 @@ public abstract class ebi_naive {
 	private static String TIM_FMT = "Time   : %d ms";
 
 	private static class Args {
-		final public int target;
+		final public int nbDigit;
 
 		public Args(int target) {
-			this.target = target;
+			this.nbDigit = target;
 		}
 	}
 
 	public static void main(String[] args) {
 		Args a = parseArgs(args);
-		int target = a.target;
+		int target = a.nbDigit;
 
 		long start = System.nanoTime();
 		long res = largestPalindrome(target);
@@ -38,27 +38,27 @@ public abstract class ebi_naive {
 		}
 		try {
 			int l = Integer.parseInt(args[0]);
-			if (l < 1 || l > 16)
-				throw new IllegalArgumentException("The number of digit shall be defined between 1 and 16.");
+			if (l < 1 || l > 8)
+				throw new IllegalArgumentException("The number of digit shall be defined between 1 and 8.");
 			return new Args(l);
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
-			System.exit(-1);
+			System.exit(-2);
 		}
 		return null;
 	}
 
-	private static int largestPalindrome(int nbDigit) {
+	private static long largestPalindrome(int nbDigit) {
 		final int min = (int) Math.pow(10, nbDigit - 1);
 		final int max = (int) Math.pow(10, nbDigit) - 1;
-		int largestPalindrome = -1;
-		for (int i = max ; i >= min ; --i) {
-			for (int j = max; j >= i; --j) {
-				final int product = i*j;
+		long largestPalindrome = -1L;
+		for (long i = max ; i >= min ; --i) {
+			for (long j = max; j >= i; --j) {
+				long product = i*j;
 				if (product < largestPalindrome)
 					break;
 				if (isPalindrome(product)) {
-					largestPalindrome = Math.max(largestPalindrome, product);
+					largestPalindrome = product;
 					break;
 				}
 			}
@@ -66,8 +66,8 @@ public abstract class ebi_naive {
 		return largestPalindrome;
 	}
 
-	private static boolean isPalindrome(int number) {
-		final String str = Integer.toString(number);
+	private static boolean isPalindrome(long number) {
+		final String str = Long.toString(number);
 		final String rev = new StringBuilder(str).reverse().toString();
 		return str.equals(rev);
 	}
