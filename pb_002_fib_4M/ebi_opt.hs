@@ -1,4 +1,4 @@
-module Main where
+module MainOpt where
 
 import System.Environment   -- getArgs
 import Text.Printf
