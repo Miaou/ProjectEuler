@@ -1,0 +1,1 @@
+../../../pb_050_sum_consec_primes/ebi_naive.java
