@@ -1,9 +1,9 @@
-module Main where
+module MainPAB where
 
-import System.Environment   -- getArgs
-import Text.Printf
-import System.IO            -- stderr
-import System.CPUTime
+import System.Environment (getArgs)
+import Text.Printf (putStrLn, hPutStr)
+import System.IO (stderr)
+import System.CPUTime (getCPUTime)
 import qualified Data.Set as Set -- sieve functions
 import Debug.Trace
 
