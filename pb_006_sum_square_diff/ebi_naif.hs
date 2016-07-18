@@ -1,9 +1,9 @@
-module MainNaif where
+module MainEBINaif where
 
-import System.Environment   -- getArgs
-import Text.Printf
-import System.IO            -- stderr
-import System.CPUTime
+import System.Environment (getArgs)
+import Text.Printf (printf)
+import System.IO (stderr, hPutStrLn)
+import System.CPUTime (getCPUTime)
 
 main :: IO()
 main = do
@@ -16,7 +16,7 @@ main = do
         printf "Result : %d\n" (v::Integer)
         printf "Time   : %.3fs\n" (t::Float)
 
-echo_err str = hPutStrLn stderr str 
+echo_err str = hPutStrLn stderr str
 
 -- See https://wiki.haskell.org/Timing_computations for better time computations
 time f v = do

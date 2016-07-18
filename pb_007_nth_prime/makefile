@@ -2,25 +2,27 @@
 
 .PHONY: all build clean
 
+TARGET = 100001
+
 all: build
-	python3 pab_multi.py 100001
-	out/pab_naif.cython 100001
-	bash -c "time out/pab_naif 100001"
-	bash -c "time out/pab_opt 100001"
-	bash -c "time out/pab_crible 100001"
-	bash -c "time lua pab_naif.lua 100001"
-	bash -c "time lua pab_opt.lua 100001"
-	bash -c "time luajit pab_naif.lua 100001"
-	bash -c "time luajit pab_opt.lua 100001"
-	bash -c "time out/pab_naif_x64 100001"
-	bash -c "time out/mar_naif 100001"
-	out/pab_multi_hs 100001
-	java out.ebi_all Naive     100001
-	java out.ebi_all NaiveOpt  100001
-	java out.ebi_all BiteSet   100001
-	java out.ebi_all BoolList  100001
-	java out.ebi_all BoolArray 100001
-	java out.ebi_all ByteArray 100001
+	python3 pab_multi.py $(TARGET)
+	out/pab_naif.cython $(TARGET)
+	bash -c "time out/pab_naif $(TARGET)"
+	bash -c "time out/pab_opt $(TARGET)"
+	bash -c "time out/pab_crible $(TARGET)"
+	bash -c "time lua pab_naif.lua $(TARGET)"
+	bash -c "time lua pab_opt.lua $(TARGET)"
+	bash -c "time luajit pab_naif.lua $(TARGET)"
+	bash -c "time luajit pab_opt.lua $(TARGET)"
+	bash -c "time out/pab_naif_x64 $(TARGET)"
+	bash -c "time out/mar_naif $(TARGET)"
+	out/pab_multi_hs $(TARGET)
+	java out.ebi_all Naive     $(TARGET)
+	java out.ebi_all NaiveOpt  $(TARGET)
+	java out.ebi_all BiteSet   $(TARGET)
+	java out.ebi_all BoolList  $(TARGET)
+	java out.ebi_all BoolArray $(TARGET)
+	java out.ebi_all ByteArray $(TARGET)
 build:
 	mkdir -p out/
 	gcc -O2 -o out/pab_naif pab_naif.c -lm
@@ -28,7 +30,7 @@ build:
 	gcc -O2 -o out/pab_crible pab_crible.c -lm
 	nasm -f elf64 -o out/pab_naif_x64.o pab_naif_x64.asm
 	gcc -o out/pab_naif_x64 out/pab_naif_x64.o
-	ghc -O2 -o out/pab_multi_hs -outputdir out pab_multi.hs
+	ghc -O2 -o out/pab_multi_hs -outputdir out -main-is MainPAB pab_multi.hs
 	ocamlopt -o out/mar_naif mar_naif.ml
 	rm mar_naif.cmi mar_naif.cmx mar_naif.o
 	javac -d . ebi_all.java

@@ -1,4 +1,4 @@
-module MainNaif where
+module MainEBINaif where
 
 import System.Environment   -- getArgs
 import Text.Printf

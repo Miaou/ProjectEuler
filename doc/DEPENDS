@@ -26,6 +26,7 @@ LuaJIT: (>= 2.0.4)
   make install
 
 Haskell: (v???)
+  cabal install split
 
 Python3-libs:
   Numba
@@ -33,3 +34,6 @@ Python3-libs:
 
 OCaml:
   apt-get install ocaml
+
+S3:
+  s'addresser à Systerel
