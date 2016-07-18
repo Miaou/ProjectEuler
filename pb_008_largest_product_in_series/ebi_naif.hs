@@ -1,32 +1,17 @@
 module EbiNaif where
 
-import System.Environment   -- getArgs
-import Text.Printf
-import System.IO            -- stderr
-import System.CPUTime
 import Data.List
 import Data.List.Split
+import Euler.Utils
+import Text.Printf (printf)
 
 main :: IO()
 main = do
-    args <- getArgs
-    if length args /= 2
-      then echo_err "There shall be exactly two arguments (first, the input file, then the number of digits)."
-      else let input_file_name = args !! 0 :: String ;
-               nb_digits = read $ args !! 1 :: Int in do
-        (t,v) <- time getLargestProduct input_file_name nb_digits
-        printf "Input  : %d\n" nb_digits
-        printf "Result : %d\n" (v::Int)
-        printf "Time   : %.3fs\n" (t::Float)
-
-echo_err str = hPutStrLn stderr str 
-
--- See https://wiki.haskell.org/Timing_computations for better time computations
-time f x y = do
-    start <- getCPUTime
-    x <- f x y
-    end <- getCPUTime
-    return ((fromIntegral (end-start))*1e-12, x)
+    (input_file_name, nb_digits) <- read_string_int
+    (t,v) <- time_3args getLargestProduct input_file_name nb_digits
+    printf "Input  : %d\n" nb_digits
+    printf "Result : %d\n" (v::Int)
+    printf "Time   : %.3fs\n" (t::Float)
 
 getLargestProduct file_name nb_digits = do
         content <- readFile file_name
