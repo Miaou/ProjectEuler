@@ -22,9 +22,9 @@ Voici l'arborescence retenue : ::
        |- out/ # pour la génération des fichiers compilés et fichiers temporaires
        |- makefile # ou autre script de génération des résultats et des codes intermediaires
 
-----------
-Avancement
-----------
+-----------------
+Gestion du projet
+-----------------
 
 Décision de faire des wrappers pour les mesures de temps et le format des outputs.
 Pour chaque langage, on crée un module/package/jmenbalek qui systématise et évite les gros copiers-collers de porc
@@ -34,6 +34,11 @@ Permettra également de faciliter une *éventuelle* analyse auto.
 On fournira un script pour les langages qui ne supportent pas l'appel à clock() ou équivalent.
 
 Il faut aussi voir pour un makefile générique (semi-générique, avec un pré-setup).
+
+Chaque codeur code dans sa branche ses petites avancées, qu'il peut pousser pour montrer à ses petits camarades.
+Ensuite, afin de limiter la quantité de commit foirés, il rebase -i et squash/merge/jmenbalek les commits avant
+de rebase sur master.
+Et tout le monde est content.
 
 -----
 TODO
