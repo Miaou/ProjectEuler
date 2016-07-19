@@ -40,6 +40,11 @@ Ensuite, afin de limiter la quantité de commit foirés, il rebase -i et squash/
 de rebase sur master.
 Et tout le monde est content.
 
+On *peut* dire qu'un changement est prêt à aller sur master quand la solution du problème est trouvée
+par une méthode donnée et que cette solution utilise les librairies proposées pour gérer ses I/O
+(mais pas encore implémentées).
+C'est l'occasion de rebase en squashant en un nombre *restreint* de commit sur master.
+
 -----
 TODO
 -----
