@@ -44,23 +44,21 @@ Et tout le monde est content.
 TODO
 -----
 
- - gérer les résultats : but autogen LaTeX
+- Gérer les résultats : but autogen LaTeX
 
-   - définir la forme des résultats
+  - définir la forme des résultats
 
-     - table liste des résultats
-     - table comparative
-     - utilisation de pb_xxx_/PROBLEM ?
+    - table liste des résultats
+    - table comparative
+    - utilisation de pb_xxx_/PROBLEM ?
 
-   - voir ce qu'on peut faire pour que stdout puisse être parsé tout seul...
+- Continuer pour que stdout puisse être parsé tout seul :
 
-     - exemple de sortie:
-         nom_methode(entree) = sortie
-         user 0.129s
-     - descendre à la ms pour la comparaison entre les méthodes (même si on est conscient que c'est absolument
-       pas reproductible à la ms près)
+  - Prévoir plusieurs batchs pour pouvoir mesurer les temps faibles,
+  - Trouver un moyen d'éviter que make dise ce qu'il fait sur stdout, mais plutôt sur stderr :
 
-       - éventuellement prévoir plusieurs batchs pour contrer ceci
+    - si c'est possible, make prend la responsabilité d'afficher le nom du programme avant ses résultats, pour le parsing,
+    - sinon, il faut prévoir dans les libs de langage que le nom du prg soit print.
 
 ------------
 Problem list
