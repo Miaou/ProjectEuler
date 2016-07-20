@@ -1,4 +1,4 @@
-module MainOpt where
+module MainEBIOpt where
 
 import Euler.Utils
 
@@ -10,5 +10,5 @@ main = do
 
 get_sum target = sum . takeWhile (< target) $ fib_pair
 
-fib_pair = 0:2:(zipWith (+) fib_pair (map (\x -> 4*x) (tail fib_pair)))
+fib_pair = 0:2:(zipWith (+) fib_pair (map (4*) (tail fib_pair)))
 
