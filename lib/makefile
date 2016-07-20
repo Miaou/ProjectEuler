@@ -35,7 +35,7 @@ build_outdir:
 	@mkdir -p $(OBJDIR)
 
 clean:
-	rm -r out/
+	rm -rf out/
 
 # Règles Haskell
 $(OBJDIR)/hs_%: %.hs
