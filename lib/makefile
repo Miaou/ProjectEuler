@@ -12,12 +12,18 @@ HS_EXES := $(patsubst %.hs, $(OBJDIR)/hs_%, $(HS_SRC_FILES))
 HS_UTILS := $(LIBDIR)/utils.hs
 HS_EXE_CALLS := $(patsubst %.hs, EXE/hs_%, $(HS_SRC_FILES))
 
+# OCaml configuration
+ML_SRC_FILES := $(wildcard *.ml)
+ML_EXES := $(patsubst %.ml, $(OBJDIR)/ml_%, $(ML_SRC_FILES))
+ML_UTILS :=
+ML_EXE_CALLS := $(patsubst %.ml, EXE/ml_%, $(ML_SRC_FILES))
+
 
 include setup.mk
 
-all: build $(HS_EXE_CALLS)
+all: build $(HS_EXE_CALLS) $(ML_EXE_CALLS)
 
-build: build_outdir $(HS_EXES)
+build: build_outdir $(HS_EXES) $(ML_EXES)
 
 build_outdir:
 	@mkdir -p $(OBJDIR)
@@ -32,3 +38,10 @@ $(OBJDIR)/hs_%: %.hs
 EXE/hs_%:
 	$(OBJDIR)/hs_$* $(ARGS)
 
+# Règles OCaml
+$(OBJDIR)/ml_%: %.ml
+	ocamlopt $< -o $@
+	rm -rf $*.cmi $*.cmx $*.o
+
+EXE/ml_%: %.ml
+	$(OBJDIR)/ml_$* $(ARGS)
