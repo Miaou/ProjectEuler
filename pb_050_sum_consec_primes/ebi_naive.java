@@ -15,7 +15,7 @@ public abstract class ebi_naive {
 			utils.statMethod(method, intArg.toString(), intArg.value);
 		} catch (NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
-			System.exit(6);
+			System.exit(utils.ERR_METH_INVOKE);
 		}
 	}
 

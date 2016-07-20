@@ -1,53 +1,25 @@
 package out;
 
+import java.lang.reflect.Method;
 import java.util.BitSet;
-import java.util.concurrent.TimeUnit;
+
+import out.utils.LongArg;
 
 public abstract class ebi_naive {
 
-	private static String INP_FMT = "Input  : %d";
-	private static String RES_FMT = "Result : %d";
-	private static String TIM_FMT = "Time   : %d ms";
-
-	private static class Args {
-		final public long target;
-
-		public Args(long target) {
-			this.target = target;
-		}
-	}
 
 	public static void main(String[] args) {
-		Args a = parseArgs(args);
-		long target = a.target;
-
-		long start = System.nanoTime();
-		long res = highestPrimeFactor(target);
-		long end = System.nanoTime();
-
-		System.out.println(String.format(INP_FMT, target));
-		System.out.println(String.format(RES_FMT, res));
-		long millis = TimeUnit.NANOSECONDS.toMillis(end - start);
-		System.out.println(String.format(TIM_FMT, millis));
-	}
-
-	private static Args parseArgs(String[] args) {
-		int count = args.length;
-		if (count != 1) {
-			System.err.println(String.format("Exactly one argument is expected (not %d).", count));
-			System.exit(-1);
-		}
 		try {
-			long l = Long.parseLong(args[0]);
-			return new Args(l);
-		} catch (NumberFormatException e) {
+			final LongArg longArg = utils.readLong(args);
+			final Method method = ebi_naive.class.getDeclaredMethod("highestPrimeFactor", long.class);
+			utils.statMethod(method, longArg.toString(), longArg.value);
+		} catch (NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
-			System.exit(-1);
+			System.exit(utils.ERR_METH_INVOKE);
 		}
-		return null;
 	}
 
-	private static long highestPrimeFactor(long x) {
+	public static long highestPrimeFactor(long x) {
 		double sqrt = Math.sqrt(x);
 		if (sqrt > Integer.MAX_VALUE)
 			return -2;

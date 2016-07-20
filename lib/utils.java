@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 
 public abstract class utils {
-	private static int ERR_METH_INVOKE = -1;
+	public static int ERR_METH_INVOKE = -1;
 	private static int ERR_WRONG_NB_ARGS = -2;
 	private static int ERR_INTEGER_WRONG_FMT = -3;
 
@@ -76,6 +76,46 @@ public abstract class utils {
 		@Override
 		public String toString() {
 			return Integer.toString(this.value);
+		}
+	}
+
+	/**
+	 * Read an array of arguments, and then returns a {@link LongArg}. <br/>
+	 * If there is more than one argument given, or if the argument is not a
+	 * long, then the program is exited.
+	 * 
+	 * @param args
+	 *            the array of arguments given to main program
+	 * @return an {@link LongArg}
+	 */
+	public static LongArg readLong(String[] args) {
+		int count = args.length;
+		if (count != 1) {
+			System.err.println(String.format("Exactly one argument is expected (not %d).", count));
+			System.exit(ERR_WRONG_NB_ARGS);
+		}
+		try {
+			return new LongArg(Long.parseLong(args[0]));
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+			System.exit(ERR_INTEGER_WRONG_FMT);
+		}
+		return null;
+	}
+
+	/**
+	 * A useful class for a simple Long representation.
+	 */
+	public static class LongArg {
+		public long value;
+
+		public LongArg(long value) {
+			this.value = value;
+		}
+
+		@Override
+		public String toString() {
+			return Long.toString(this.value);
 		}
 	}
 
