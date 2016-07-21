@@ -33,7 +33,7 @@ Python3-libs:
   Cython
 
 OCaml:
-  apt-get install ocaml
+  apt-get install ocaml ocamlc
 
 S3:
   s'addresser à Systerel

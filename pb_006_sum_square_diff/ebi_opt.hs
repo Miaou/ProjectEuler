@@ -1,29 +1,12 @@
 module MainEBIOpt where
 
-import System.Environment (getArgs)
-import Text.Printf (printf)
-import System.IO (stderr, hPutStrLn)
-import System.CPUTime (getCPUTime)
+import Euler.Utils
 
 main :: IO()
 main = do
-    args <- getArgs
-    if length args /= 1
-      then echo_err "There shall be exactly one argument."
-      else let lim = read $ args !! 0 :: Integer in do
-        (t,v) <- time get_diff lim
-        printf "Input  : %d\n" lim
-        printf "Result : %d\n" (v::Integer)
-        printf "Time   : %.3fs\n" (t::Float)
+    lim <- read_int
+    stat_func get_diff lim
 
-echo_err str = hPutStrLn stderr str
-
--- See https://wiki.haskell.org/Timing_computations for better time computations
-time f v = do
-    start <- getCPUTime
-    x <- return $! f v
-    end <- getCPUTime
-    return ((fromIntegral (end-start))*1e-12, x)
 
 get_diff x = div (x * (x+1) * (3*x^2 - x - 2)) 12
 

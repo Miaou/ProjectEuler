@@ -1,54 +1,23 @@
 package out;
 
-import java.util.concurrent.TimeUnit;
+import java.lang.reflect.Method;
+
+import out.utils.IntArg;
 
 public abstract class ebi_naive {
 
-	private static String INP_FMT = "Input  : %d";
-	private static String RES_FMT = "Result : %d";
-	private static String TIM_FMT = "Time   : %d ms";
-
-	private static class Args {
-		final public int nbDigit;
-
-		public Args(int target) {
-			this.nbDigit = target;
-		}
-	}
-
 	public static void main(String[] args) {
-		Args a = parseArgs(args);
-		int target = a.nbDigit;
-
-		long start = System.nanoTime();
-		long res = largestPalindrome(target);
-		long end = System.nanoTime();
-
-		System.out.println(String.format(INP_FMT, target));
-		System.out.println(String.format(RES_FMT, res));
-		long millis = TimeUnit.NANOSECONDS.toMillis(end - start);
-		System.out.println(String.format(TIM_FMT, millis));
-	}
-
-	private static Args parseArgs(String[] args) {
-		int count = args.length;
-		if (count != 1) {
-			System.err.println(String.format("Exactly one argument is expected (not %d).", count));
-			System.exit(-1);
-		}
 		try {
-			int l = Integer.parseInt(args[0]);
-			if (l < 1 || l > 8)
-				throw new IllegalArgumentException("The number of digit shall be defined between 1 and 8.");
-			return new Args(l);
-		} catch (NumberFormatException e) {
+			final IntArg intArg = utils.readInt(args);
+			final Method method = ebi_naive.class.getDeclaredMethod("largestPalindrome", int.class);
+			utils.statMethod(method, intArg.toString(), intArg.value);
+		} catch (NoSuchMethodException | SecurityException e) {
 			e.printStackTrace();
-			System.exit(-2);
+			System.exit(utils.ERR_METH_INVOKE);
 		}
-		return null;
 	}
 
-	private static long largestPalindrome(int nbDigit) {
+	public static long largestPalindrome(int nbDigit) {
 		final int min = (int) Math.pow(10, nbDigit - 1);
 		final int max = (int) Math.pow(10, nbDigit) - 1;
 		long largestPalindrome = -1L;
