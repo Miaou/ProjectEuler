@@ -43,7 +43,11 @@ Et tout le monde est content.
 On *peut* dire qu'un changement est prêt à aller sur master quand la solution du problème est trouvée
 par une méthode donnée et que cette solution utilise les librairies proposées pour gérer ses I/O
 (mais pas encore implémentées).
-C'est l'occasion de rebase en squashant en un nombre *restreint* de commit sur master.
+C'est l'occasion de rebase sur master (*éventuellement* avec un nombre plus petit de commits), *vérifier* que
+ça marche toujours, et git merge --no-ff master pour créer un point de ralliement avec master avec
+*une description explicite* des commits ajoutés (voir par exemple ce commit_).
+
+.. _commit: https://github.com/Miaou/ProjectEuler/commit/b414fb7f5170442bafcd135cc0f2bea74cdad08f
 
 -----
 TODO
