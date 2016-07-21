@@ -18,6 +18,18 @@ read_int = do
       then error "There shall be exactly one argument (int)."
       else return (read $ head args :: Int)
 
+read_string_integer = do
+    args <- getArgs
+    if length args /= 2
+      then error "There shall be exactly two arguments (string, integer)."
+      else return (args !! 0 :: String , read $ args !! 1 :: Integer)
+
+read_integer = do
+    args <- getArgs
+    if length args /= 1
+      then error "There shall be exactly one argument (integer)."
+      else return (read $ head args :: Integer)
+
 echo_err str = hPutStrLn stderr str
 
 -- See https://wiki.haskell.org/Timing_computations for better time computations
