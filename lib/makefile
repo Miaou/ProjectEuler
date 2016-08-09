@@ -24,12 +24,18 @@ JAVA_EXES := $(patsubst %.java, $(OBJDIR)/%.class, $(JAVA_SRC_FILES))
 JAVA_UTILS := $(LIBDIR)/utils.java
 JAVA_EXE_CALLS := $(patsubst %.java, EXE/java_%, $(JAVA_SRC_FILES))
 
+# Rust configuration
+RUST_SRC_FILES := $(wildcard *.rs)
+RUST_EXES := $(patsubst %.rs, $(OBJDIR)/rust_%, $(RUST_SRC_FILES))
+RUST_UTILS :=
+RUST_EXE_CALLS := $(patsubst %.rs, EXE/rust_%, $(RUST_SRC_FILES))
+
 
 include setup.mk
 
-all: build $(HS_EXE_CALLS) $(ML_EXE_CALLS) $(JAVA_EXE_CALLS)
+all: build $(HS_EXE_CALLS) $(ML_EXE_CALLS) $(JAVA_EXE_CALLS) $(RUST_EXE_CALLS)
 
-build: build_outdir $(HS_EXES) $(ML_EXES) $(JAVA_EXES)
+build: build_outdir $(HS_EXES) $(ML_EXES) $(JAVA_EXES) $(RUST_EXES)
 
 build_outdir:
 	@mkdir -p $(OBJDIR)
@@ -58,3 +64,10 @@ $(OBJDIR)/%.class: %.java
 
 EXE/java_%: %.java
 	java $(OBJDIR).$* $(ARGS)
+
+# Règles Rust
+$(OBJDIR)/rust_%: %.rs
+	rustc -O -o $@ $<
+
+EXE/rust_%: %.rs
+	$(OBJDIR)/rust_$* $(ARGS)

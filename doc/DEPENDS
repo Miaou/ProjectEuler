@@ -35,5 +35,8 @@ Python3-libs:
 OCaml:
   apt-get install ocaml ocamlc
 
+Rust:
+  rustc 1.10.0 (https://www.rustup.rs/)
+
 S3:
   s'addresser à Systerel
