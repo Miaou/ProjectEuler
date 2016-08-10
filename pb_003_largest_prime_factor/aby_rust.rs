@@ -1,32 +1,17 @@
-use std::env;
-use std::time::SystemTime;
+extern crate utils;
 
 fn main() {
-    let limit = match env::args().nth(1) {
-        Some(text) => match text.parse::<u64>() {
-            Ok(value) => value,
-            Err(_) => {
-                println!("Invalid number: {}", text);
-                return;
-            }
-        },
-        None => {
-            println!("Missing command line argument");
+    let limit = match utils::read_int() {
+        Ok(value) => value,
+        Err(msg) => {
+            println!("{}", msg);
             return;
         }
     };
 
-    let before = SystemTime::now();
-    //let result = largest_prime_factor_sieve(limit);
-    let result = largest_prime_factor_nosieve(limit, 2, 1);
-    let elapsed = match before.elapsed() {
-        Ok(elapsed) => elapsed,
-        Err(_) => panic!("Could not get elapsed time")
-    };
-
-    println!("Input  : {}", limit);
-    println!("Result : {}", result);
-    println!("Time   : {}.{:0>#9}s", elapsed.as_secs(), elapsed.subsec_nanos());
+    utils::time(|| -> u64 {
+        largest_prime_factor_nosieve(limit, 2, 1)
+    }, limit.to_string());
 }
 
 fn largest_prime_factor_sieve(n: u64) -> u64 {

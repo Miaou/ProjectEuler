@@ -66,8 +66,11 @@ EXE/java_%: %.java
 	java $(OBJDIR).$* $(ARGS)
 
 # Règles Rust
-$(OBJDIR)/rust_%: %.rs
-	rustc -O -o $@ $<
+$(LIBDIR)/libutils.rlib: $(LIBDIR)/utils.rs
+	rustc -O --crate-name utils --crate-type lib -o $@ $<
+
+$(OBJDIR)/rust_%: %.rs $(LIBDIR)/libutils.rlib
+	rustc -O -o $@ -L crate=$(LIBDIR) $<
 
 EXE/rust_%: %.rs
 	$(OBJDIR)/rust_$* $(ARGS)
