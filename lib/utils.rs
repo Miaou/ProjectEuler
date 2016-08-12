@@ -13,9 +13,10 @@ pub fn read_int() -> Result<u64, &'static str> {
     }
 }
 
-pub fn time<F, T>(f: F, input_desc: String) where
+pub fn time<F, T, D>(f: F, input_desc: D) where
     F: Fn() -> T,
-    T: std::fmt::Display
+    T: std::fmt::Display,
+    D: std::fmt::Display,
 {
     let before = SystemTime::now();
     let result = f();
