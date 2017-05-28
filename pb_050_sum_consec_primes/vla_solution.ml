@@ -48,16 +48,8 @@ if Array.length(Sys.argv) == 2 then
 
   let cumul_list = build_cumulative_list prime_list 0 in
 
-  (* somme des éléments d'une liste entre deux index *)
-  let rec sum_list_from_start_to_end l start_index end_index =
-  if start_index = end_index then
-    0
-  else
-    (List.nth prime_list start_index) + (sum_list_from_start_to_end l (start_index+1) end_index) in
-
   (* vérification de la somme *)
   let rec check_sum_at_index start_index sum_length =
-  (*let temp_sum = sum_list_from_start_to_end prime_list start_index (start_index + sum_length) in*)
   let temp_sum = (List.nth cumul_list (start_index + sum_length)) - (List.nth cumul_list start_index) in
   (* optim: pas la peine d'aller plus loin si la somme cumul est déjà plus grande que le max*)
   if (temp_sum > max) then
