@@ -38,6 +38,16 @@ if Array.length(Sys.argv) == 2 then
   let prime_list = 2::filter_primes candidates_list in
   let prime_list_length = List.length prime_list in
 
+  let s_prime_list_length = string_of_int prime_list_length in
+
+  (* construction de la somme cumulative *)
+  let rec build_cumulative_list prime_list cumul = match prime_list with
+    | [] -> []
+    | [h] -> [cumul+h]
+    | h::remain -> [cumul+h]@build_cumulative_list remain (cumul+h) in
+
+  let cumul_list = build_cumulative_list prime_list 0 in
+
   (* somme des éléments d'une liste entre deux index *)
   let rec sum_list_from_start_to_end l start_index end_index =
   if start_index = end_index then
@@ -47,14 +57,19 @@ if Array.length(Sys.argv) == 2 then
 
   (* vérification de la somme *)
   let rec check_sum_at_index start_index sum_length =
-  let temp_sum = sum_list_from_start_to_end prime_list start_index (start_index + sum_length) in
-  if List.mem temp_sum prime_list then
-    temp_sum
+  (*let temp_sum = sum_list_from_start_to_end prime_list start_index (start_index + sum_length) in*)
+  let temp_sum = (List.nth cumul_list (start_index + sum_length)) - (List.nth cumul_list start_index) in
+  (* optim: pas la peine d'aller plus loin si la somme cumul est déjà plus grande que le max*)
+  if (temp_sum > max) then
+    0
   else
-    if (start_index = prime_list_length - sum_length - 1) then
-      0
+    if List.mem temp_sum prime_list then
+      temp_sum
     else
-      check_sum_at_index (start_index+1) sum_length in
+      if (start_index = prime_list_length - sum_length - 1) then
+        0
+      else
+        check_sum_at_index (start_index+1) sum_length in
 
   (* vérification des chaines de manière décroissante *)
   let rec check_consecutives_primes sum_length =
@@ -65,8 +80,11 @@ if Array.length(Sys.argv) == 2 then
     check_length in
 
   (*let () = List.iter (printf "%d ") prime_list in*)
+  (*let () = List.iter (printf "%d ") cumul_list in*)
   let sum_result = check_consecutives_primes (prime_list_length - 1) in
   let s_sum_result = string_of_int sum_result in
+  print_endline "\n s_prime_list_length";
+  print_endline s_prime_list_length;
   print_endline "\n Sum result:";
   print_endline s_sum_result;
   print_endline "End of program";
