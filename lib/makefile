@@ -45,7 +45,7 @@ clean:
 
 # Règles Haskell
 $(OBJDIR)/hs_%: %.hs
-	ghc -O -o $@ -outputdir $(OBJDIR) -main-is $(shell cat $< | grep '^module' | sed 's/^.*module\s\+\(.*\)\s\+where.*$$/\1/') $(HS_UTILS) $<
+	ghc -O2 -o $@ -outputdir $(OBJDIR) -main-is $(shell cat $< | grep '^module' | sed 's/^.*module\s\+\(.*\)\s\+where.*$$/\1/') $(HS_UTILS) $<
 
 EXE/hs_%:
 	$(OBJDIR)/hs_$* $(ARGS)
